@@ -29,6 +29,7 @@
 #include "llvm/Support/FileSystem.h"
 #include "llvm/Support/GlobPattern.h"
 #include "llvm/Support/TarWriter.h"
+#include <array>
 #include <atomic>
 #include <memory>
 #include <mutex>
@@ -209,6 +210,7 @@ public:
   void linkerMain(ArrayRef<const char *> args);
   void addFile(StringRef path, bool withLOption);
   void addLibrary(StringRef name);
+  const std::optional<std::array<uint8_t, 16>> *getMemProfModuleId() const;
 
 private:
   Ctx &ctx;
@@ -260,6 +262,7 @@ struct Config {
   llvm::StringRef init;
   llvm::StringRef ltoAAPipeline;
   llvm::StringRef ltoCSProfileFile;
+  llvm::StringRef ltoMemProfProfile;
   llvm::StringRef ltoNewPmPasses;
   llvm::StringRef ltoObjPath;
   llvm::StringRef ltoSampleProfile;
