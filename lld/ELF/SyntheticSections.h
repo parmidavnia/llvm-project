@@ -42,6 +42,10 @@ class Defined;
 struct PhdrEntry;
 class SymbolTableBaseSection;
 
+// Compute the stable identifier for a MemProf-instrumented shared object
+// before LTO optimization starts.
+std::optional<std::array<uint8_t, 16>> computeMemProfModuleId(Ctx &ctx);
+
 struct CieRecord {
   EhSectionPiece *cie = nullptr;
   SmallVector<EhSectionPiece *, 0> fdes;
